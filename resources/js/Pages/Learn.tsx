@@ -1,4 +1,5 @@
 import { Link } from "@inertiajs/react"
+import React from "react";
 
 export default function Learn({posts}) {
     return(<>
@@ -22,9 +23,8 @@ export default function Learn({posts}) {
                 :
                 <span>
                     <Link 
-                        key={link.label} 
-                        className='p-1 mx-1 text-slate-300'
-                    />
+                            key={link.label}
+                            className='p-1 mx-1 text-slate-300' href={""}                    />
                 </span>
             ))}
         </div>

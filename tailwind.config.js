@@ -10,6 +10,7 @@ export default {
         "./resources/**/*.blade.php",
         "./resources/**/*.jsx",
         "./resources/**/*.js",
+        "./resources/**/*.tsx",
     ],
 
     theme: {
