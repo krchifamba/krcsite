@@ -1,7 +1,6 @@
 import { createInertiaApp } from '@inertiajs/react';
 import { createRoot } from 'react-dom/client';
 import Layout from './Layouts/Layout';
-import React from 'react';
 
 createInertiaApp({
   title: title => title ? `${title} - Laravel Portfolio Site` : 'Laravel Portfolio Site',

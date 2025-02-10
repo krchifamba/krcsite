@@ -1,7 +1,6 @@
 import { Link } from '@inertiajs/react';
-import React from 'react';
 
-export default function Layout({ children }) {
+export default function Layout({ children } : {children:any}) {
     return (<> 
             <head>
                 <meta 
@@ -11,7 +10,7 @@ export default function Layout({ children }) {
                     http-equiv="X-UA-Compatible"
                 />
             </head>
-            <body className='bg-gray-900 flex justify-self-center flex-col min-h-screen mx-auto px-6 sm:px-12 lg:max-w-[70rem] xl:max-w-[76rem] 2xl:max-w-[92rem] text-white'>
+            <body className='container bg-gray-900 flex justify-self-center flex-col min-h-screen mx-auto px-6 sm:px-12 lg:max-w-[70rem] xl:max-w-[76rem] 2xl:max-w-[92rem] text-white'>
                     <div className=''>
                         <div className='px-4 py-4 flex justify-between '>
                             <div> <Link className='' href='/'>Home</Link></div>

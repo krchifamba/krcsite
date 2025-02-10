@@ -1,10 +1,9 @@
 import { Link } from "@inertiajs/react"
-import React from "react";
 
-export default function Learn({posts}) {
+export default function Learn({posts}:{posts:any}) {
     return(<>
         <div>
-            {posts.data.map(post => (
+            {posts.data.map((post:any) => (
                 <div key={post.id} className="p-4 border">
                     {post.body}
                 </div>
@@ -12,7 +11,7 @@ export default function Learn({posts}) {
         </div>
         
         <div className="py-4 px-4">
-            {posts.links.map(link => (
+            {posts.links.map((link:any) => (
                 link.url ? 
                     <Link 
                         key={link.label} 
