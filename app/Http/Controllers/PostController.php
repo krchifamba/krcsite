@@ -14,7 +14,8 @@ class PostController extends Controller
     public function index()
     {
         // $posts = Post::latest()->paginate(6);
-        return inertia('Home', ['name' => 'Goku']);
+        $posts = Post::latest()->paginate(5);
+        return inertia('Home', ['name' => 'Goku', 'posts' => $posts]);
     }
 
     public function about()
@@ -27,6 +28,12 @@ class PostController extends Controller
     {
         $posts = Post::latest()->paginate(5);
         return inertia('Learn', ['posts' => $posts]);
+    }
+
+    public function header()
+    {
+        $name = 'Goku';
+        return inertia('Header', ['name' => $name]);
     }
 
     /**

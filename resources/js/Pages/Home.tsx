@@ -1,11 +1,16 @@
 import { Head, Link, usePage } from "@inertiajs/react";
+import Header from "../Components/Header";
+import About from "./About";
+import Learn from "./Learn";
 
-export default function Home({name}:{name:string}) {
-    return (<>
-    <Head title="Kudzai Chifamba" />
-        <header className="h-80 flex flex-col text-center justify-center">
-            <h1 className="text-3xl font-bold underline" >Hello, I'm {name}</h1>
-            <h2 className="text-2xl font-bold"> a Full Stack Web Developer!</h2>
-        </header>
-    </>);
+
+export default function Home({posts}:{posts:any}) {
+    return (
+        <div className="flex flex-col justify-center sm:px-12 lg:max-w-[70rem] xl:max-w-[76rem] 2xl:max-w-[92rem]">
+            <Head title="Kudzai Chifamba" />
+            <Header name={'Goku'}/>
+            <About />
+            <Learn posts={posts}/>
+        </div>
+);
 }

@@ -1,5 +1,13 @@
 import { Link } from "@inertiajs/react";
 
+const Navbar = () => {
+    const [showNavbar, setShowNavbar] = useState(false)
+  
+    const handleShowNavbar = () => {
+      setShowNavbar(!showNavbar)
+    }
+  
+
 export default function Navbar() {
     return(<>
             <div className='px-4 py-4 flex justify-between '>
@@ -10,6 +18,8 @@ export default function Navbar() {
                     <Link href="/contact">Contact Me</Link>
                     <Link href='/learn'>Learn</Link>
                 </div>
-            </div>   
+            </div>
+
+            
         </>);
 }

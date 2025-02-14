@@ -25,6 +25,7 @@
     },
     "dependencies": {
         "@inertiajs/react": "^2.0.0",
+        "react-router-dom": "^7.1.5",
         "watch": "^0.13.0"
     }
 }

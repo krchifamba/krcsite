@@ -1,40 +1,37 @@
-import { Link } from '@inertiajs/react';
+import { Head } from '@inertiajs/react';
+import { BrowserRouter } from 'react-router-dom'
+import { useEffect } from 'react';
+import Navbar from '../Components/Navbar'
+import Footer from '../Components/Footer';
 
 export default function Layout({ children } : {children:any}) {
+
+    useEffect(() => {
+        document.body.classList.add("bg-gray-900", "p-4");
+    
+        return () => {
+          document.body.classList.remove("bg-gray-900", "p-4");
+        };
+      }, []);
+    
     return (<> 
-            <head>
+            <Head>
                 <meta 
                     charSet="UTF-8"
                     name="viewport" 
                     content="width=device-width, initial-scale=1.0, ie=edge"
                     http-equiv="X-UA-Compatible"
                 />
-            </head>
-            <body className='container bg-gray-900 flex justify-self-center flex-col min-h-screen mx-auto px-6 sm:px-12 lg:max-w-[70rem] xl:max-w-[76rem] 2xl:max-w-[92rem] text-white'>
-                    <div className=''>
-                        <div className='px-4 py-4 flex justify-between '>
-                            <div> <Link className='' href='/'>Home</Link></div>
-                            <div className='w-1/4 flex justify-around'>
-                                <Link href="/about">About</Link>
-                                <Link href="/portfolio">Portfolio</Link>
-                                <Link href="/contact">Contact Me</Link>
-                                <Link href='/learn'>Learn</Link>
-                            </div>
-                        </div>    
-                    </div>
-                    <main className='items-center flex flex-col justify-center'>
+            </Head>
+            <div className='bg-gray-900 min-h-lvh container mx-auto flex flex-col items-center text-white'>  
+                    <main className=''>
+                        <BrowserRouter>
+                            <Navbar />
+                        </BrowserRouter> 
                         {children}
                     </main>
-                    <footer>
-                        <ul className='py-4 flex justify-around'>
-                            <li>Horley, Surrey </li>
-                            <li>07530258756</li>
-                            <li>kchifamba9@outlook.com</li>
-                            <li>GitHub</li>
-                            <li>LinkedIn</li>
-                        </ul>
-                    </footer>
-            </body>
+            </div>
+            <Footer />
         </>
     );
 }
