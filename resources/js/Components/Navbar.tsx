@@ -19,7 +19,7 @@ const Navbar: React.FC = () => {
     ];
 
     return (
-        <nav className='shadow-md p-4'>
+        <nav className='shadow-md px-4'>
             <div className='w-full mx-auto flex justify-between items-center'>
                 <Link className='text-lg font-bold' href='/'>
                     Home
@@ -30,8 +30,8 @@ const Navbar: React.FC = () => {
                     {navItems.map((item: NavItem) => (
                         <Link
                             key={item.id}
-                            href={`/${item.text.toLowerCase()}`}
-                            className='hover:text-blue-500'
+                            href={`#${item.text.toLowerCase()}`}
+                            className='hover:text-gray-900 hover:bg-slate-50 h-full p-3 transition-all duration-150 ease-in-out'
                         >
                             {item.text}
                         </Link>
@@ -44,6 +44,7 @@ const Navbar: React.FC = () => {
                         className='md:hidden p-2 focus:outline-none'
                         onClick={toggleNavbar}
                         type='button'
+                        title='toggleNav'
                     >
                         <svg
                             xmlns='http://www.w3.org/2000/svg'
@@ -73,7 +74,7 @@ const Navbar: React.FC = () => {
                     {navItems.map((item: NavItem) => (
                         <Link
                             key={item.id}
-                            href={`/${item.text.toLowerCase()}`}
+                            href={`#${item.text.toLowerCase()}`}
                             className='hover:text-blue-500 w-full text-center py-2'
                         >
                             {item.text}

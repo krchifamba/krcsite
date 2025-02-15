@@ -7,10 +7,10 @@ import Footer from '../Components/Footer';
 export default function Layout({ children } : {children:any}) {
 
     useEffect(() => {
-        document.body.classList.add("bg-gray-900", "p-4");
+        document.body.classList.add("bg-gray-900", "px-4");
     
         return () => {
-          document.body.classList.remove("bg-gray-900", "p-4");
+          document.body.classList.remove("bg-gray-900", "px-4");
         };
       }, []);
     

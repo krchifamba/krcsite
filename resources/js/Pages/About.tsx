@@ -1,6 +1,6 @@
 function About() {
     return (<>
-        <div className="h-svh flex flex-col px-4">
+        <div id='About' className="h-svh flex flex-col px-4">
             <h1 className="text-3xl font-bold underline" >About Myself</h1>
             <p>
                 I studied Information Technology at London South Bank University, where I 
