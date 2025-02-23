@@ -1,0 +1,23 @@
+# Ignore dependencies
+node_modules/
+vendor/
+
+# Ignore system files
+.DS_Store
+.git
+*.log
+*.tar
+*.zip
+
+# Ignore Laravel-specific files
+storage/
+bootstrap/cache/
+.env
+.env.local
+.env.development
+.env.production
+.env.testing
+
+# Ignore temporary files
+tmp/
+log/
