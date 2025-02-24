@@ -1,42 +1,36 @@
-# Use official PHP image with required extensions
-FROM php:8.2-fpm
+FROM php:8.2-fpm-alpine
 
-# Install system dependencies
-RUN apt-get update && apt-get install -y \
-    git unzip libpng-dev libjpeg-dev libfreetype6-dev curl \
-    && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install gd pdo pdo_mysql
-
-# Install Composer
-COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
-
-# Install Node.js (LTS version)
-RUN curl -fsSL https://deb.nodesource.com/setup_18.x | bash - && \
-    apt-get install -y nodejs && \
-    npm install -g npm
-
-# Set working directory
 WORKDIR /var/www/html
 
-# Copy package.json and package-lock.json before installing dependencies
-COPY package.json package-lock.json ./
+# Install required packages and PHP extensions
+RUN apk add --no-cache \
+    bash \
+    zip \
+    unzip \
+    curl \
+    git \
+    mysql-client \
+    libpng-dev \
+    libjpeg-turbo-dev \
+    libwebp-dev \
+    freetype-dev \
+    oniguruma-dev \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg --with-webp \
+    && docker-php-ext-install gd mbstring pdo pdo_mysql
 
-# Install Node.js dependencies
-RUN npm install
-RUN npm run build  # Build frontend assets
+# Install Composer
+COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
 
-# Copy application files
-COPY . .
+# Copy Laravel project files
+COPY . ./
 
-# Install PHP dependencies
-RUN composer install --no-dev --optimize-autoloader
+# Create necessary Laravel storage directories before setting permissions
+RUN mkdir -p /var/www/html/storage /var/www/html/bootstrap/cache \
+    && chown -R www-data:www-data /var/www/html \
+    && chmod -R 775 /var/www/html/storage /var/www/html/bootstrap/cache
 
-# Set permissions
-RUN chown -R www-data:www-data /var/www/html
+# Use non-root user for security
+USER www-data
 
-# Expose PHP-FPM port
-EXPOSE 9000
-
-USER www-data  # Run as non-root user for security
-
+# Start PHP-FPM
 CMD ["php-fpm"]

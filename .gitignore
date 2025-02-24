@@ -59,3 +59,4 @@ ehthumbs.db
 # Ignore compiled assets
 /public/css/*
 /public/js/*
+/storage/*
