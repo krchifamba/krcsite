@@ -1,17 +1,19 @@
-import { Head, Link, usePage } from "@inertiajs/react";
+import { Head } from "@inertiajs/react";
 import Header from "../Components/Header";
 import About from "./About";
-import Learn from "./Learn";
+import Portfolio from "./Portfolio";
+import Form from "../Components/Form";
 
-
-export default function Home({posts}:{posts:any}) {
-    return (
-        <div className="flex flex-col justify-center sm:px-12 lg:max-w-[70rem] xl:max-w-[76rem] 2xl:max-w-[92rem]">
-            <Head title="Kudzai Chifamba" />
-            <div id='top' className='scroll-smooth'><Header name={'Goku'}/></div>
-            <div id='about' className='scroll-smooth'><About /></div>
-            {/* <div id='portfolio' className='scroll-smooth'></div> */}
-            <div id='learn' className='scroll-smooth'><Learn posts={posts}/></div>   
-        </div>
-);
+export default function Home() {
+  return (
+    <div id="root">
+      <div className="flex flex-col justify-center items-center">
+        <Head title="Kudzai Chifamba" />
+        <div id="top"><Header name={'Kudzai'} /></div>
+        <div id="portfolio"><Portfolio /></div>
+        <div id="about"><About /></div>
+        <div id="contact"><Form /></div>
+      </div>
+    </div>
+  );
 }

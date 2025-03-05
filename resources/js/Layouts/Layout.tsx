@@ -1,20 +1,12 @@
 import { Head } from '@inertiajs/react';
 import { BrowserRouter } from 'react-router-dom'
-import { useEffect } from 'react';
-import Navbar from '../Components/Navbar'
+import Navbar from '../Components/new navbar'
 import Footer from '../Components/Footer';
 
 export default function Layout({ children } : {children:any}) {
 
-    useEffect(() => {
-        document.body.classList.add("bg-gray-900", "px-4");
-    
-        return () => {
-          document.body.classList.remove("bg-gray-900", "px-4");
-        };
-      }, []);
-    
-    return (<> 
+    return (
+        <html className='scroll-smooth'>
             <Head>
                 <meta 
                     charSet="UTF-8"
@@ -23,15 +15,15 @@ export default function Layout({ children } : {children:any}) {
                     http-equiv="X-UA-Compatible"
                 />
             </Head>
-            <div className='bg-gray-900 min-h-lvh container mx-auto flex flex-col items-center text-white'>  
-                    <main className=''>
-                        <BrowserRouter>
-                            <Navbar />
-                        </BrowserRouter> 
-                        {children}
-                    </main>
-            </div>
-            <Footer />
-        </>
+            <body className='w-screen bg-gray-900 text-white max-w-full overflow-x-hidden'>  
+                <main className='w-full'>
+                    <BrowserRouter>
+                        <Navbar />
+                    </BrowserRouter> 
+                    {children}
+                </main>
+                <Footer />
+            </body>
+        </html>
     );
 }
