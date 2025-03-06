@@ -20,12 +20,12 @@ export default function Portfolio() {
 
     return (
         <div className="min-h-screen min-w-screen  bg-white text-black flex flex-col justify-center items-center">
-            <div className="px-6 lg:max-w-[70rem] xl:max-w-[76rem] 2xl:max-w-[92rem]">
+            <div className="custom-container">
                 <h2 className="text-center text-3xl font-bold mb-8">Portfolio</h2>
                 <div className="flex flex-col md:flex-row items-center">
                     {
                         projects.map((project) => (
-                            <Link href={project.href} className="flex items-center">
+                            <Link href={project.href} className="flex items-center flex-col md:flex-row w-full">
                                 <div key={project.id} className="md:w-1/2 p-4">
                                     <img src={project.image} alt={project.title} className="w-full h-auto rounded-lg" />
                                 </div>

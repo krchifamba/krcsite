@@ -1,1 +1,4 @@
-@import "tailwindcss"
+@import "tailwindcss";
+.custom-container {
+    @apply container px-6 max-w-screen-xl xl:max-w-[76rem] 2xl:max-w-[92rem];
+  }

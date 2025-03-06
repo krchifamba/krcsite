@@ -3,15 +3,7 @@ import forms from '@tailwindcss/forms';
 
 /** @type {import('tailwindcss').Config} */
 export default {
-    content: [
-        './vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php',
-        './storage/framework/views/*.php',
-        './resources/views/**/*.blade.php',
-        "./resources/**/*.blade.php",
-        "./resources/**/*.jsx",
-        "./resources/**/*.js",
-        "./resources/**/*.tsx",
-    ],
+    content: ["./src/**/*.{html,js,jsx,ts,tsx}"],
 
     theme: {
         extend: {

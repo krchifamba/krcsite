@@ -7,9 +7,9 @@ export default function About() {
     ];
 
     return (
-        <div className="h-full flex flex-col items-center py-12">
-            <div className="container px-6 lg:max-w-[70rem] xl:max-w-[76rem] 2xl:max-w-[92rem]">
-                <h1 className="text-3xl font-bold underline text-center mb-6">About Myself</h1>
+        <div className="h-svh flex flex-col items-centerjustify-center py-12">
+            <div className="custom-container">
+                <h2 className="text-3xl font-bold underline text-center mb-6">About Myself</h2>
                 <p className="mb-4">
                     I studied Information Technology at London South Bank University, where I 
                     learned about developing websites using HTML, CSS, and PHP. 
