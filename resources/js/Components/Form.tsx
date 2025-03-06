@@ -75,14 +75,14 @@ export default function Form() {
     };
 
     return (
-        <div className="min-h-screen w-screen bg-white text-black flex flex-col justify-center items-center">
-            <div className="max-w-2xl px-4">
+        <div className="min-h-screen w-screen bg-white text-black flex flex-col justify-center items-center overflow-hidden">
+            <div className="max-w-2xl px-4 w-full">
                 <div>
                     <h1 className="text-2xl font-bold text-center">Contact Me</h1>
                     <p className="text-center">Have any questions about my work or want to commission me for a website?</p>
                     <p className="text-center">Reach out using the form below:</p>
                 </div>
-                <form onSubmit={handleSubmit} className="p-8 rounded shadow-md">
+                <form onSubmit={handleSubmit} className="p-8 rounded shadow-md w-full">
                     <div className="flex space-x-4 flex-col md:flex-row">
                         <div className="w-full md:w-1/2">
                             <label htmlFor="name">Name:</label>
@@ -92,7 +92,7 @@ export default function Form() {
                                 value={name}
                                 onChange={(e) => setName(e.target.value)}
                                 required
-                                className="border p-2 w-full"
+                                className="border-b p-2 w-full focus:outline-none focus:border-blue-500 transition-all duration-300"
                             />
                             {errors.name && <p className="text-red-500 text-sm">{errors.name}</p>}
                         </div>
@@ -104,7 +104,7 @@ export default function Form() {
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 required
-                                className="border p-2 w-full"
+                                className="border-b p-2 w-full focus:outline-none focus:border-blue-500 transition-all duration-300"
                             />
                             {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
                         </div>
@@ -116,7 +116,8 @@ export default function Form() {
                             value={message}
                             onChange={(e) => setMessage(e.target.value)}
                             required
-                            className="border p-2 w-full"
+                            className="border-b p-2 w-full max-h-48 overflow-auto m-auto focus:outline-none focus:border-blue-500 transition-all duration-300"
+                            placeholder="Enter your message here..."
                         />
                         {errors.message && <p className="text-red-500 text-sm">{errors.message}</p>}
                     </div>
@@ -132,7 +133,7 @@ export default function Form() {
             {/* Popup */}
             {popupVisible && (
                 <div className="fixed inset-0 bg-gray-800 bg-opacity-75 flex justify-center items-center z-50">
-                    <div className="bg-white rounded shadow-lg max-w-md w-full relative">
+                    <div className="bg-white p-6 rounded shadow-lg max-w-md w-full relative">
                         <button
                             onClick={closePopup}
                             className="absolute top-2 right-2 text-gray-600 text-xl"
