@@ -7,8 +7,8 @@ export default function About() {
     ];
 
     return (
-        <div className="h-svh flex flex-col items-centerjustify-center py-12">
-            <div className="custom-container">
+        <div className="min-h-screen flex flex-col items-center justify-center py-12">
+            <div className="custom-container max-w-3xl px-4">
                 <h2 className="text-3xl font-bold underline text-center mb-6">About Myself</h2>
                 <p className="mb-4">
                     I studied Information Technology at London South Bank University, where I 
@@ -27,11 +27,12 @@ export default function About() {
                 </p>
 
                 {/* Skills Section */}
+                <h2 className="text-3xl font-bold underline text-center mb-6">My Skills</h2>
                 <div className="flex flex-wrap gap-3 justify-center">
                     {skills.map((skill, index) => (
                         <span 
                             key={index} 
-                            className="bg-white text-gray-900 px-4 py-2 rounded-lg shadow-md text-sm font-medium"
+                            className="bg-white text-gray-900 px-4 py-2 rounded-lg shadow-md text-sm font-medium transition-all duration-300 ease-in-out transform hover:bg-gray-200 hover:shadow-xl hover:scale-105"
                         >
                             {skill}
                         </span>
