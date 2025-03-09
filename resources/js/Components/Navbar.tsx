@@ -53,7 +53,7 @@ export default function Navbar() {
     };
 
     return (
-          <nav className="fixed w-screen top-0 shadow-md bg-gray-800 bg-opacity-70 text-white flex justify-center z-50">
+          <nav className="fixed w-screen top-0 shadow-md bg-gray-800 text-white flex justify-center z-50">
               {/* Desktop Navigation */}
               <div className="hidden sm:flex justify-between items-center w-full max-w-5xl px-4">
                 {/* Home Link */}
@@ -71,7 +71,7 @@ export default function Navbar() {
                         <a
                             key={item.id}
                             href={item.href}
-                            className="hover:text-gray-900 hover:bg-slate-50 h-full p-3 transition-all duration-150 ease-in-out cursor-pointer"
+                            className="hover:text-gray-900 hover:bg-slate-50 h-full px-3 py-4 transition-all duration-150 ease-in-out cursor-pointer"
                             onClick={(e) => handleSmoothScroll(e, item.href)}
                         >
                             {item.text}
@@ -112,6 +112,15 @@ export default function Navbar() {
             >
                 {/* Navigation Links */}
                 <div className="flex flex-col items-center space-y-4 text-xl font-semibold">
+                    <a
+                        key={0}
+                        className="hover:text-blue-400 transition-all duration-300 cursor-pointer"
+                        href="#top"
+                        onClick={(e) => handleSmoothScroll(e, "#top")}
+                    >
+                        Back to Top
+                    </a>
+
                     {NavItem.map((item) => (
                         <a
                             key={item.id}

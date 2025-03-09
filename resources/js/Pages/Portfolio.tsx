@@ -13,9 +13,9 @@ export default function Portfolio() {
         {
             id: 1,
             title: "Kuda-Kwashe Website",
-            description: "Website made for a singer/songwriter using WordPress and Elementor.",
+            description: "Website made for my brother, (a singer/songwriter) using WordPress and Elementor.",
             image: "https://res.cloudinary.com/difrudood/image/upload/v1740869140/frbuv6okb653mvsjjeil.png",
-            href: "#portfolio",
+            href: "#",
         },
     ];
 
@@ -25,7 +25,7 @@ export default function Portfolio() {
                 <h2 className="text-center text-3xl font-bold mb-8">Portfolio</h2>
                 <div className="flex flex-col md:flex-row items-center">
                     {projects.map((project) => (
-                        <Link
+                        <a
                             href={project.href}
                             key={project.id}
                             className="flex items-center flex-col md:flex-row w-full bg-white p-4 rounded-lg shadow-md hover:bg-gray-200 transition duration-300 ease-in-out"
@@ -41,7 +41,7 @@ export default function Portfolio() {
                                 <h2 className="text-2xl font-bold mb-4 text-center md:text-left">{project.title}</h2>
                                 <p>{project.description}</p>
                             </div>
-                        </Link>
+                        </a>
                     ))}
                 </div>
             </div>

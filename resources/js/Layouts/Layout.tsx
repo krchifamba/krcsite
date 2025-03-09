@@ -14,7 +14,7 @@ export default function Layout({ children }: { children: any }) {
             <div className="scroll-smooth w-screen bg-gray-900 text-white max-w-full overflow-hidden">
                 <Suspense fallback={<div>Loading...</div>}>
                     <Navbar />
-                    <main className="w-full">{children}</main>
+                        <main className="w-full">{children}</main>
                     <Footer />
                 </Suspense>
             </div>

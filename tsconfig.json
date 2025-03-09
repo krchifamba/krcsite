@@ -1,6 +1,6 @@
 {
     "include": ["vite.config.js","resources/js/**/*.ts", "resources/js/**/*.tsx", "resources/js/**/*.d.ts"],
-    "types": ["vite/client"],
+    // "types": ["vite/client"],
     "compilerOptions": {
         "allowJs": true,
         "module": "ESNext",
@@ -16,5 +16,6 @@
         "paths": {
             "@/*": ["./resources/ts/*"]
         },
+        "types": ["vite/client"],
     }
 }

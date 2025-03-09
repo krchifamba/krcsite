@@ -1,6 +1,14 @@
 import { Link } from "@inertiajs/react";
 
 export default function Header({ name }: { name: string }) {
+    const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement>) => {
+        e.preventDefault(); // Prevent default jump behavior
+        const target = document.getElementById("portfolio");
+        if (target) {
+            target.scrollIntoView({ behavior: "smooth" });
+        }
+    };
+
     return (
         <header className="min-h-screen flex flex-col text-center justify-center">
             <div className="mx-auto px-6 lg:max-w-[70rem] xl:max-w-[76rem] 2xl:max-w-[92rem]">
@@ -9,13 +17,14 @@ export default function Header({ name }: { name: string }) {
                     <h3 className="text-2xl font-bold">a Full Stack Web Developer!</h3>
                     <p>With 3 years of professional experience in Laravel, C#, and WordPress, I can build your stylish and responsive web applications.</p>
                     
-                    {/* Button button, who's got the button*/}
-                    <Link
-                        className="w-full max-w-xs px-6 py-4 bg-white text-black text-xl font-bold rounded-lg shadow-lg hover:bg-gray-200"
-                        href="#portfolio"
+                    {/* Smooth scroll button */}
+                    <a
+                        className="w-full max-w-xs px-6 py-4 bg-white text-black text-xl font-bold rounded-lg shadow-lg hover:bg-gray-200 cursor-pointer"
+                        // href="#portfolio"
+                        onClick={handleSmoothScroll}
                     >
                         Portfolio
-                    </Link>
+                    </a>
                 </div>
             </div>
         </header>
