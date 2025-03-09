@@ -6,7 +6,7 @@ export default function FadeIn({ children }: { children: any }) {
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }} 
-      transition={{ duration: 1 }}
+      transition={{ duration: 0.7 }}
     >
       {children}
     </motion.div>
