@@ -1,4 +1,4 @@
-import { Link } from "@inertiajs/react";
+import FadeIn from "../Components/Framer";
 
 export default function Portfolio() {
     interface Project {
@@ -21,10 +21,13 @@ export default function Portfolio() {
 
     return (
         <div className="min-h-screen min-w-screen bg-white text-black flex flex-col justify-center items-center">
-            <div className="custom-container">
-                <h2 className="text-center text-3xl font-bold mb-8">Portfolio</h2>
+            <div className="custom-container p-4">
+                <FadeIn>
+                <h2 className="text-center text-3xl font-bold mb-8">My Projects</h2>
+                </FadeIn>
                 <div className="flex flex-col md:flex-row items-center">
                     {projects.map((project) => (
+                        <FadeIn>
                         <a
                             href={project.href}
                             key={project.id}
@@ -42,6 +45,7 @@ export default function Portfolio() {
                                 <p>{project.description}</p>
                             </div>
                         </a>
+                        </FadeIn>
                     ))}
                 </div>
             </div>

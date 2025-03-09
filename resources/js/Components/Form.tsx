@@ -10,32 +10,18 @@ export default function Form() {
         email: "",
         message: "",
     });
-    const [popupVisible, setPopupVisible] = useState(false); // State for popup visibility
-    const [popupMessage, setPopupMessage] = useState(""); // State for popup message
+    const [popupVisible, setPopupVisible] = useState(false);
+    const [popupMessage, setPopupMessage] = useState("");
 
     useEffect(() => {
-        // Disable body scroll when popup is visible
-        if (popupVisible) {
-            document.body.style.overflow = "hidden";
-        } else {
-            document.body.style.overflow = "auto";
-        }
-
-        // Clean up the effect when popup visibility changes
+        document.body.style.overflow = popupVisible ? "hidden" : "auto";
         return () => {
             document.body.style.overflow = "auto";
         };
     }, [popupVisible]);
 
-    const validateName = (name: string) => {
-        const regex = /^[A-Za-z\s,.'-]+$/;
-        return regex.test(name);
-    };
-
-    const validateEmail = (email: string) => {
-        const regex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-        return regex.test(email);
-    };
+    const validateName = (name: string) => /^[A-Za-z\s,.'-]+$/.test(name);
+    const validateEmail = (email: string) => /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email);
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
@@ -47,41 +33,39 @@ export default function Form() {
         };
 
         setErrors(newErrors);
-
-        if (newErrors.name || newErrors.email || newErrors.message) return;
+        if (Object.values(newErrors).some((error) => error)) return;
 
         const templateParams = { name, email, message };
 
-        emailjs
-            .send(
-                "service_04mikbi",
-                "template_br3e771",
-                templateParams,
-                "y4hNtx2iivJLO506Y"
-            )
-            .then((response) => {
-                const firstName = name.split(" ")[0]; // Get the first name
-                setPopupMessage(`Thank you for your email, ${firstName}! I'll get back to you as soon as possible.`);
-                setPopupVisible(true); // Show popup on success
-            })
-            .catch((error) => {
-                setPopupMessage("Failed to send email. Please try again.");
-                setPopupVisible(true); // Show popup on failure
-            });
-    };
+        const serviceID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+        const templateID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+        const userID = import.meta.env.VITE_EMAILJS_USER_ID;        
 
-    const closePopup = () => {
-        setPopupVisible(false); // Close the popup
+        if (!serviceID || !templateID || !userID) {
+            console.error("Missing environment variables");
+            setPopupMessage("Email service is not configured. Please try again later.");
+            setPopupVisible(true);
+            return;
+        }
+
+        emailjs
+            .send(serviceID, templateID, templateParams, userID)
+            .then(() => {
+                setPopupMessage(`Thank you, ${name.split(" ")[0]}! I'll get back to you soon.`);
+                setPopupVisible(true);
+            })
+            .catch(() => {
+                setPopupMessage("Failed to send email. Please try again.");
+                setPopupVisible(true);
+            });
     };
 
     return (
         <div className="min-h-screen w-screen bg-white text-black flex flex-col justify-center items-center overflow-hidden">
             <div className="max-w-2xl px-4 w-full">
-                <div>
-                    <h1 className="text-2xl font-bold text-center">Contact Me</h1>
-                    <p className="text-center">Have any questions about my work or want to commission me for a website?</p>
-                    <p className="text-center">Reach out using the form below:</p>
-                </div>
+                <h1 className="text-2xl font-bold text-center">Contact Me</h1>
+                <p className="text-center">Have any questions or want a website? Reach out below:</p>
+
                 <form onSubmit={handleSubmit} className="p-8 rounded shadow-md w-full">
                     <div className="flex space-x-4 flex-col md:flex-row">
                         <div className="w-full md:w-1/2">
@@ -92,7 +76,7 @@ export default function Form() {
                                 value={name}
                                 onChange={(e) => setName(e.target.value)}
                                 required
-                                className="border-b p-2 w-full focus:outline-none focus:border-blue-500 transition-all duration-300"
+                                className="border-b p-2 w-full focus:border-blue-500 transition-all"
                             />
                             {errors.name && <p className="text-red-500 text-sm">{errors.name}</p>}
                         </div>
@@ -104,7 +88,7 @@ export default function Form() {
                                 value={email}
                                 onChange={(e) => setEmail(e.target.value)}
                                 required
-                                className="border-b p-2 w-full focus:outline-none focus:border-blue-500 transition-all duration-300"
+                                className="border-b p-2 w-full focus:border-blue-500 transition-all"
                             />
                             {errors.email && <p className="text-red-500 text-sm">{errors.email}</p>}
                         </div>
@@ -116,15 +100,12 @@ export default function Form() {
                             value={message}
                             onChange={(e) => setMessage(e.target.value)}
                             required
-                            className="border-b p-2 w-full max-h-48 overflow-auto m-auto focus:outline-none focus:border-blue-500 transition-all duration-300"
+                            className="border-b p-2 w-full focus:border-blue-500 transition-all overflow-auto overflow-x-hidden"
                             placeholder="Enter your message here..."
                         />
                         {errors.message && <p className="text-red-500 text-sm">{errors.message}</p>}
                     </div>
-                    <button
-                        type="submit"
-                        className="bg-blue-500 text-white p-2 mt-4 rounded w-full active:bg-blue-950"
-                    >
+                    <button type="submit" className="bg-blue-500 text-white p-2 mt-4 rounded w-full active:bg-blue-950">
                         Submit
                     </button>
                 </form>
@@ -132,16 +113,14 @@ export default function Form() {
 
             {/* Popup */}
             {popupVisible && (
-                <div className="fixed inset-0 bg-gray-800 bg-opacity-75 flex justify-center items-center z-50">
-                    <div className="bg-white p-6 rounded shadow-lg max-w-md w-full relative">
-                        <button
-                            onClick={closePopup}
-                            className="absolute top-2 right-2 text-gray-600 text-xl"
-                        >
-                            &times;
-                        </button>
-                        <p className="text-center text-lg">{popupMessage}</p>
-                    </div>
+                <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2 bg-white p-4 rounded-lg shadow-lg max-w-md w-full flex justify-between items-center space-x-4 border border-gray-300 animate-slide-up">
+                    <p className="text-black">{popupMessage}</p>
+                    <button
+                        onClick={() => setPopupVisible(false)}
+                        className="text-gray-600 text-xl font-bold hover:text-gray-900"
+                    >
+                        &times;
+                    </button>
                 </div>
             )}
         </div>

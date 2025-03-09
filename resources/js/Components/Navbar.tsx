@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faLinkedin, faGithub } from "@fortawesome/free-brands-svg-icons";
 import { Menu, X } from "lucide-react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { socials } from "./Socials";
+
 
 interface NavItem {
     id: number;
@@ -9,30 +10,13 @@ interface NavItem {
     href: string;
 }
 
-interface Socials {
-    id: number;
-    icon: any;
-    href: string;
-}
+
 
 export default function Navbar() {
     const NavItem: NavItem[] = [
         { id: 1, text: "Portfolio", href: "#portfolio" },
         { id: 2, text: "About", href: "#about" },
         { id: 3, text: "Contact", href: "#contact" },
-    ];
-
-    const socials: Socials[] = [
-        {
-            id: 1,
-            icon: faLinkedin,
-            href: "https://www.linkedin.com/in/krchifamba/",
-        },
-        {
-            id: 2,
-            icon: faGithub,
-            href: "https://www.github.com/krchifamba",
-        },
     ];
 
     const [menuOpen, setMenuOpen] = useState(false);
@@ -53,7 +37,7 @@ export default function Navbar() {
     };
 
     return (
-          <nav className="fixed w-screen top-0 shadow-md bg-gray-800 text-white flex justify-center z-50">
+          <nav className="w-screen fixed top-0 shadow-md bg-gray-800 text-white flex justify-center z-50">
               {/* Desktop Navigation */}
               <div className="hidden sm:flex justify-between items-center w-full max-w-5xl px-4">
                 {/* Home Link */}
@@ -80,7 +64,7 @@ export default function Navbar() {
                 </div>
 
                 {/* Socials */}
-                <div className="flex space-x-4">
+                {/* <div className="flex space-x-4">
                     {socials.map((social) => (
                         <a
                             key={social.id}
@@ -92,7 +76,7 @@ export default function Navbar() {
                             <FontAwesomeIcon icon={social.icon} size="2x" />
                         </a>
                     ))}
-                </div>
+                </div> */}
             </div>
 
             {/* Mobile Menu Button */}

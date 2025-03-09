@@ -1,3 +1,6 @@
+import FadeIn from "../Components/Framer";  
+
+
 export default function About() {
     const skills = [
         "HTML", "CSS", "JavaScript", "TypeScript", "PHP", "Python", "C#",
@@ -7,8 +10,9 @@ export default function About() {
     ];
 
     return (
-        <div className="min-h-screen flex flex-col items-center justify-center py-12">
-            <div className="custom-container max-w-3xl px-4">
+        <div className="min-h-screen flex flex-col items-center justify-center">
+            <div className="custom-container">
+                <FadeIn>
                 <h2 className="text-3xl font-bold underline text-center mb-6">About Myself</h2>
                 <p className="mb-4">
                     I studied Information Technology at London South Bank University, where I 
@@ -25,8 +29,10 @@ export default function About() {
                     If you're looking for a talented engineer to join your team or to work on
                     your web development projects, email or call me!
                 </p>
+                </FadeIn>
 
                 {/* Skills Section */}
+                <FadeIn>
                 <h2 className="text-3xl font-bold underline text-center mb-6">My Skills</h2>
                 <div className="flex flex-wrap gap-3 justify-center">
                     {skills.map((skill, index) => (
@@ -38,6 +44,7 @@ export default function About() {
                         </span>
                     ))}
                 </div>
+                </FadeIn>
             </div>
         </div>
     );
