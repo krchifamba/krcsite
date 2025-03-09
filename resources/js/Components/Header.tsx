@@ -33,7 +33,7 @@ export default function Header({ name }: { name: string }) {
                         href={social.href}
                         target="_blank"
                         rel="noreferrer"
-                        className="text-2xl"
+                        className="text-2xl hover:text-blue-500 transition-all duration-300 ease-in-out"
                     >
                         <FontAwesomeIcon icon={social.icon} size="2x"/>
                     </a>
