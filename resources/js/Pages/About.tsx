@@ -11,7 +11,7 @@ export default function About() {
 
     return (
         <div className="min-h-screen flex flex-col items-center justify-center">
-            <div className="custom-container">
+            <div className="custom-container p-4">
                 <FadeIn>
                 <h2 className="text-3xl font-bold underline text-center mb-6">About Myself</h2>
                 <p className="mb-4">
